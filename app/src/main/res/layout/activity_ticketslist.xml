@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/coordinatorLayoutTicketsList"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    tools:context="com.mrhanson.anythingit.Ticket.TicketsList">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_ticketslist" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:adjustViewBounds="true"
+        android:fitsSystemWindows="true"
+        android:nestedScrollingEnabled="false"
+        android:src="@drawable/ic_plus_white_48dp"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="right|bottom" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

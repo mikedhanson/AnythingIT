@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory android:title="Theme">
+        <SwitchPreference
+            android:id="@+id/darkThemeID"
+            android:key="@string/dark_mode_key"
+            android:title="@string/dark_Mode_Title"
+            android:summary="@string/dark_Mode_Summary">
+            <!--android:defaultValue="true"-->
+        </SwitchPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_header_about">
+
+        <Preference
+            android:selectable="false"
+            android:summary="@string/summary_about" />
+
+        <Preference
+            android:summary="@string/app_version"
+            android:title="@string/title_version" />
+
+        <Preference
+            android:key="@string/key_send_feedback"
+            android:summary="@string/summary_support"
+            android:title="@string/title_send_feedback" />
+
+        <!-- preference opens url in browser -->
+        <Preference
+            android:summary="@string/summary_faq"
+            android:title="@string/title_faq">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_faq" />
+        </Preference>
+
+        <Preference android:title="@string/privacy_policy">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_privacy" />
+        </Preference>
+
+        <Preference android:title="@string/title_terms">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_terms" />
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Maintenance ">
+
+        <com.mrhanson.anythingit.SettingsActivites.DeleteAllTicketsDialogPreference
+            android:id="@+id/customDialogDeleteTickets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="customDialogDeleteNotes"
+            android:title="Delete Tickets" />
+
+        <com.mrhanson.anythingit.SettingsActivites.DeleteAccountDialogPreference
+            android:id="@+id/customDialogDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="customDialogDeleteAccount"
+            android:title="Delete Account" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

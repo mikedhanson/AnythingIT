@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.mrhanson.anythingit.MainActivity">
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="Settings" />
+
+    <!--<item
+        android:id="@+id/action_share"
+        android:title="Share" />
+    <item
+        android:id="@+id/action_donate"
+        android:title="Donate" />-->
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="Logout" />
+</menu>
