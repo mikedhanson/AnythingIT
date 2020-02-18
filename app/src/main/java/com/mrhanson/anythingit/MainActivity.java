@@ -1,8 +1,5 @@
 package com.mrhanson.anythingit;
 
-/*This is a test comment*/
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
