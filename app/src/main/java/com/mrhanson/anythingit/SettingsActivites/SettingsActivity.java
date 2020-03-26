@@ -1,10 +1,9 @@
 package com.mrhanson.anythingit.SettingsActivites;
 
-import android.annotation.SuppressLint;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -13,7 +12,6 @@ import android.preference.SwitchPreference;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mrhanson.anythingit.R;
@@ -49,7 +47,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
-            darkModeSwitchButton = (SwitchPreference) findPreference(this.getResources().getString(R.string.dark_mode_key));
+           /* darkModeSwitchButton = (SwitchPreference) findPreference(this.getResources().getString(R.string.dark_mode_key));
             darkModeSwitchButton.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -65,7 +63,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
                     return true;
                 }
-            });
+            });*/
         }
     }
 

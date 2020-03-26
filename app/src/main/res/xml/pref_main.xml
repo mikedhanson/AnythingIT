@@ -4,13 +4,17 @@
 
 
     <PreferenceCategory android:title="Theme">
-        <SwitchPreference
+        <Preference
+            android:selectable="false"
+            android:summary="@string/dark_Mode_Summary" />
+
+        <!--<SwitchPreference
             android:id="@+id/darkThemeID"
             android:key="@string/dark_mode_key"
             android:title="@string/dark_Mode_Title"
             android:summary="@string/dark_Mode_Summary">
-            <!--android:defaultValue="true"-->
-        </SwitchPreference>
+            &lt;!&ndash;android:defaultValue="true"&ndash;&gt;
+        </SwitchPreference>-->
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_header_about">

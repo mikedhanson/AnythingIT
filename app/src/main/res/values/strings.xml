@@ -59,7 +59,7 @@
 
 
     <string name="dark_Mode_Title">Dark Mode</string>
-    <string name="dark_Mode_Summary">Changes app theme to night mode</string>
+    <string name="dark_Mode_Summary">To change the app theme. Change your system theme. </string>
     <string name="dark_mode_key">Dark Mode ON</string>
 
 
