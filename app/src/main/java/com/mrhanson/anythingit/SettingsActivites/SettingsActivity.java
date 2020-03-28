@@ -18,7 +18,6 @@ import com.mrhanson.anythingit.R;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
     private static final String TAG = SettingsActivity.class.getSimpleName();
-    //SwitchPreference darkModeSwitchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +30,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     public static class MainPreferenceFragment extends PreferenceFragment {
-        private SwitchPreference darkModeSwitchButton;
-
 
         @Override
         public void onCreate(final Bundle savedInstanceState) {
@@ -47,23 +44,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     return true;
                 }
             });
-           /* darkModeSwitchButton = (SwitchPreference) findPreference(this.getResources().getString(R.string.dark_mode_key));
-            darkModeSwitchButton.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference preference, Object newValue) {
-
-                    if(!(darkModeSwitchButton.isChecked())){
-                        Toast.makeText(getActivity(), "Dark Mode: ON", Toast.LENGTH_SHORT).show();
-
-                        startActivity(new Intent(getActivity(), SettingsActivity.class));
-                    }else {
-                        Toast.makeText(getActivity(), "Dark Mode: OFF", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(), SettingsActivity.class));
-                    }
-
-                    return true;
-                }
-            });*/
         }
     }
 

@@ -61,15 +61,22 @@
             android:id="@+id/customDialogDeleteTickets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:key="customDialogDeleteNotes"
+            android:key="customDialogDeleteTickets"
             android:title="Delete Tickets" />
 
-        <com.mrhanson.anythingit.SettingsActivites.DeleteAccountDialogPreference
-            android:id="@+id/customDialogDeleteAccount"
+        <com.mrhanson.anythingit.SettingsActivites.DeleteChatDialogPreference
+            android:id="@+id/ClearChatDialogPreference"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:key="customDialogDeleteAccount"
-            android:title="Delete Account" />
+            android:key="customDialogDeleteChat"
+            android:title="Clear Converstaions" />
+
+        <com.mrhanson.anythingit.SettingsActivites.DeleteAccountDialogPreference
+        android:id="@+id/customDialogDeleteAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:key="customDialogDeleteAccount"
+        android:title="Delete Account" />
     </PreferenceCategory>
 
 

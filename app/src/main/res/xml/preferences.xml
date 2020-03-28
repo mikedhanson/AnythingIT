@@ -8,6 +8,10 @@
         android:title="dialog"/>
 
     <com.mrhanson.anythingit.SettingsActivites.DeleteAccountDialogPreference
+        android:key="customDialogDeleteChat"
+        android:title="dialog"/>
+
+    <com.mrhanson.anythingit.SettingsActivites.DeleteAccountDialogPreference
         android:key="customDialogDeleteAccount"
         android:title="dialog"/>
 

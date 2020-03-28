@@ -46,6 +46,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mrhanson.anythingit.Models.FriendlyMessage;
+import com.mrhanson.anythingit.SettingsActivites.SettingsActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -292,16 +293,16 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //TODO
-            /*case R.id.sign_out_button:
+            case R.id.action_logout:
                 mFirebaseAuth.signOut();
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
                 mUsername = ANONYMOUS;
                 startActivity(new Intent(this, SignInActivity.class));
                 finish();
-                return true;*/
-            /*case R.id.settings
+                return true;
+            case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
-                return true;*/
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

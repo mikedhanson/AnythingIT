@@ -34,7 +34,7 @@
         <activity android:name=".Ticket.EditTicket" />
 
         <activity android:name=".ChatActivity"></activity>
-
+        <activity android:name=".ui.EditProfile"></activity>
         <activity android:name=".SettingsActivites.SettingsActivity"></activity>
 
 
