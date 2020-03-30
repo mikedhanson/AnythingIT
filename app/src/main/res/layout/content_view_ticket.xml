@@ -79,5 +79,12 @@
             android:layout_gravity="center"
             android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/tv_deleteTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Ticket"
+            android:textColor="@color/red_900" />
+
     </LinearLayout>
 </RelativeLayout>

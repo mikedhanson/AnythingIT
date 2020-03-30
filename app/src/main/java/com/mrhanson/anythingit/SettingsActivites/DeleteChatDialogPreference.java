@@ -13,10 +13,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mrhanson.anythingit.R;
 
-public class ClearChatDialogPreference extends DialogPreference {
+public class DeleteChatDialogPreference extends DialogPreference {
 
     private DatabaseReference mDeleteUserMessagesDB;
-    public ClearChatDialogPreference(Context context, AttributeSet attrs) {
+    public DeleteChatDialogPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setDialogLayoutResource(R.xml.preferences);
         setPositiveButtonText(android.R.string.ok);

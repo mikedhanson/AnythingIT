@@ -8,13 +8,6 @@
             android:selectable="false"
             android:summary="@string/dark_Mode_Summary" />
 
-        <!--<SwitchPreference
-            android:id="@+id/darkThemeID"
-            android:key="@string/dark_mode_key"
-            android:title="@string/dark_Mode_Title"
-            android:summary="@string/dark_Mode_Summary">
-            &lt;!&ndash;android:defaultValue="true"&ndash;&gt;
-        </SwitchPreference>-->
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_header_about">
@@ -69,14 +62,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:key="customDialogDeleteChat"
-            android:title="Clear Converstaions" />
+            android:title="Clear Conversations" />
 
         <com.mrhanson.anythingit.SettingsActivites.DeleteAccountDialogPreference
-        android:id="@+id/customDialogDeleteAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:key="customDialogDeleteAccount"
-        android:title="Delete Account" />
+            android:id="@+id/customDialogDeleteAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:key="customDialogDeleteAccount"
+            android:title="Delete Account" />
     </PreferenceCategory>
 
 

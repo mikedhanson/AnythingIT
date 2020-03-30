@@ -61,6 +61,11 @@
     <string name="dark_Mode_Title">Dark Mode</string>
     <string name="dark_Mode_Summary">To change the app theme. Change your system theme. </string>
     <string name="dark_mode_key">Dark Mode ON</string>
+    <string name="account_stats">Account Stats</string>
+    <string name="Null">empty</string>
+    <string name="last_login_date">Last Login Date:</string>
+    <string name="email_address">Email Address:</string>
+
 
 
 </resources>

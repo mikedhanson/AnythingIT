@@ -1,9 +1,15 @@
 package com.mrhanson.anythingit.Ticket;
 
+import android.app.AlertDialog;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -13,11 +19,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mrhanson.anythingit.Models.Ticket;
 import com.mrhanson.anythingit.R;
+import com.mrhanson.anythingit.ui.HomeFragment;
 
 public class ViewTicket extends AppCompatActivity {
     private TextView lbl_title;
     private TextView lbl_details;
     private TextView lbl_saved_at;
+    private TextView lbl_delete_ticket;
     private FirebaseUser mFirebaseUser;
     DatabaseReference mDatabase;
     private FirebaseAuth mFirebaseAuth;
@@ -26,9 +34,6 @@ public class ViewTicket extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_ticket);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);*/
-
         final Intent intent = getIntent();
         final Ticket ticket = (Ticket) intent.getSerializableExtra("Ticket");
 
@@ -42,6 +47,7 @@ public class ViewTicket extends AppCompatActivity {
         lbl_details = findViewById(R.id.txt_ticket_details);
         lbl_title = findViewById(R.id.txt_ticket_title);
         lbl_saved_at = findViewById(R.id.lbl_saved_at);
+        lbl_delete_ticket = findViewById(R.id.tv_deleteTicket);
 
         FloatingActionButton fab = findViewById(R.id.fab_edit);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +85,29 @@ public class ViewTicket extends AppCompatActivity {
             }
         });
 
+        lbl_delete_ticket.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(ViewTicket.this);
+                alert.setMessage("Do you want to delete this ticket? ").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            mDatabase.removeValue();
+                            Toast.makeText(ViewTicket.this, "Deleted Successfully ", Toast.LENGTH_SHORT).show();
+
+                            //startActivity(new Intent(ViewTicket.this, HomeFragment.class));
+
+                        } catch (Exception e) {
+                            Toast.makeText(ViewTicket.this, "Failed to delete...", Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                }).setNegativeButton("Cancel" , null);
+                AlertDialog alertDialog = alert.create();
+                alertDialog.show();
+            }
+        });
         //shows the menu bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
