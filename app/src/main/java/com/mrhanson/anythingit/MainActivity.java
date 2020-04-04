@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
        /* FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
             @Override
             public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 }
                 // Get new Instance ID token
                 String token = task.getResult().getToken();
-                // Log and toast
+                // Log and toastwad
                 String msg = getString(R.string.msg_token_fmt, token);
                 Log.d(TAG, msg);
                 Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();

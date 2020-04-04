@@ -1,17 +1,15 @@
 package com.mrhanson.anythingit.Ticket;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mrhanson.anythingit.Models.Ticket;
 import com.mrhanson.anythingit.R;
-import com.mrhanson.anythingit.ui.HomeFragment;
 
 public class ViewTicket extends AppCompatActivity {
     private TextView lbl_title;
@@ -94,9 +91,13 @@ public class ViewTicket extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         try {
                             mDatabase.removeValue();
-                            Toast.makeText(ViewTicket.this, "Deleted Successfully ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ViewTicket.this, "Deleted Successfully.", Toast.LENGTH_SHORT).show();
 
-                            //startActivity(new Intent(ViewTicket.this, HomeFragment.class));
+                           /* Fragment homeFrag = new Fragment();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.homeFrag, homeFrag ); // give your fragment container id in first parameter
+                            transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                            transaction.commit();*/
 
                         } catch (Exception e) {
                             Toast.makeText(ViewTicket.this, "Failed to delete...", Toast.LENGTH_SHORT).show();

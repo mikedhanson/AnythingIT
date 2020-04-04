@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment implements GoogleApiClient.OnConnecti
                     Ticket ticket = new Ticket(title, details, date, ticketsId);
                     ticketList.add(ticket);
                     nAdapter.notifyDataSetChanged();
-                }else {
+                } else {
                     Toast.makeText(getContext(), "No Tickets, add one now!", Toast.LENGTH_LONG).show();
                 }
             }
