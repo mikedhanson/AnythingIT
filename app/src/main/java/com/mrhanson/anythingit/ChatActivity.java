@@ -140,53 +140,104 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         };
 
         DatabaseReference messagesRef = mFirebaseDatabaseReference.child("/root/" + mFirebaseUser.getUid() + "/" + MESSAGES_CHILD);
+        DatabaseReference techRef = mFirebaseDatabaseReference.child("/root/" + mFirebaseUser.getUid() + "/" + MESSAGES_CHILD);
 
-        FirebaseRecyclerOptions<FriendlyMessage> options = new FirebaseRecyclerOptions.Builder<FriendlyMessage>().setQuery(messagesRef, parser).build();
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>(options) {
-            @Override
-            public MessageViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                return new MessageViewHolder(inflater.inflate(R.layout.item_message, viewGroup, false));
-            }
+        Boolean isTech = true;
+        if(isTech){
+            FirebaseRecyclerOptions<FriendlyMessage> options = new FirebaseRecyclerOptions.Builder<FriendlyMessage>().setQuery(techRef, parser).build();
+            mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>(options) {
+                @Override
+                public MessageViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                    LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+                    return new MessageViewHolder(inflater.inflate(R.layout.item_message, viewGroup, false));
+                }
 
-            @Override
-            protected void onBindViewHolder(final MessageViewHolder viewHolder, int position, FriendlyMessage friendlyMessage) {
-                mProgressBar.setVisibility(ProgressBar.INVISIBLE);
-                if (friendlyMessage.getText() != null) {
-                    viewHolder.messageTextView.setText(friendlyMessage.getText());
-                    viewHolder.messageTextView.setVisibility(TextView.VISIBLE);
-                    viewHolder.messageImageView.setVisibility(ImageView.GONE);
-                } else if (friendlyMessage.getImageUrl() != null) {
-                    String imageUrl = friendlyMessage.getImageUrl();
-                    if (imageUrl.startsWith("gs://")) {
-                        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl);
-                        storageReference.getDownloadUrl().addOnCompleteListener(
-                                new OnCompleteListener<Uri>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Uri> task) {
-                                        if (task.isSuccessful()) {
-                                            String downloadUrl = task.getResult().toString();
-                                            Glide.with(viewHolder.messageImageView.getContext()).load(downloadUrl).into(viewHolder.messageImageView);
-                                        } else {
-                                            Log.w(TAG, "Getting download url was not successful.", task.getException());
+                @Override
+                protected void onBindViewHolder(final MessageViewHolder viewHolder, int position, FriendlyMessage friendlyMessage) {
+                    mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+                    if (friendlyMessage.getText() != null) {
+                        viewHolder.messageTextView.setText(friendlyMessage.getText());
+                        viewHolder.messageTextView.setVisibility(TextView.VISIBLE);
+                        viewHolder.messageImageView.setVisibility(ImageView.GONE);
+                    } else if (friendlyMessage.getImageUrl() != null) {
+                        String imageUrl = friendlyMessage.getImageUrl();
+                        if (imageUrl.startsWith("gs://")) {
+                            StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl);
+                            storageReference.getDownloadUrl().addOnCompleteListener(
+                                    new OnCompleteListener<Uri>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Uri> task) {
+                                            if (task.isSuccessful()) {
+                                                String downloadUrl = task.getResult().toString();
+                                                Glide.with(viewHolder.messageImageView.getContext()).load(downloadUrl).into(viewHolder.messageImageView);
+                                            } else {
+                                                Log.w(TAG, "Getting download url was not successful.", task.getException());
+                                            }
                                         }
-                                    }
-                                });
-                    } else {
-                        Glide.with(viewHolder.messageImageView.getContext()).load(friendlyMessage.getImageUrl()).into(viewHolder.messageImageView);
+                                    });
+                        } else {
+                            Glide.with(viewHolder.messageImageView.getContext()).load(friendlyMessage.getImageUrl()).into(viewHolder.messageImageView);
+                        }
+                        viewHolder.messageImageView.setVisibility(ImageView.VISIBLE);
+                        viewHolder.messageTextView.setVisibility(TextView.GONE);
                     }
-                    viewHolder.messageImageView.setVisibility(ImageView.VISIBLE);
-                    viewHolder.messageTextView.setVisibility(TextView.GONE);
+
+                    viewHolder.messengerTextView.setText(friendlyMessage.getName());
+                    if (friendlyMessage.getPhotoUrl() == null) {
+                        viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(ChatActivity.this, R.drawable.ic_dashboard_black_24dp));
+                    } else {
+                        Glide.with(ChatActivity.this).load(friendlyMessage.getPhotoUrl()).into(viewHolder.messengerImageView);
+                    }
+                }
+            };
+        } else { // if user is not an admin, get their own messages
+            FirebaseRecyclerOptions<FriendlyMessage> options = new FirebaseRecyclerOptions.Builder<FriendlyMessage>().setQuery(messagesRef, parser).build();
+            mFirebaseAdapter = new FirebaseRecyclerAdapter<FriendlyMessage, MessageViewHolder>(options) {
+                @Override
+                public MessageViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                    LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+                    return new MessageViewHolder(inflater.inflate(R.layout.item_message, viewGroup, false));
                 }
 
-                viewHolder.messengerTextView.setText(friendlyMessage.getName());
-                if (friendlyMessage.getPhotoUrl() == null) {
-                    viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(ChatActivity.this, R.drawable.ic_dashboard_black_24dp));
-                } else {
-                    Glide.with(ChatActivity.this).load(friendlyMessage.getPhotoUrl()).into(viewHolder.messengerImageView);
+                @Override
+                protected void onBindViewHolder(final MessageViewHolder viewHolder, int position, FriendlyMessage friendlyMessage) {
+                    mProgressBar.setVisibility(ProgressBar.INVISIBLE);
+                    if (friendlyMessage.getText() != null) {
+                        viewHolder.messageTextView.setText(friendlyMessage.getText());
+                        viewHolder.messageTextView.setVisibility(TextView.VISIBLE);
+                        viewHolder.messageImageView.setVisibility(ImageView.GONE);
+                    } else if (friendlyMessage.getImageUrl() != null) {
+                        String imageUrl = friendlyMessage.getImageUrl();
+                        if (imageUrl.startsWith("gs://")) {
+                            StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(imageUrl);
+                            storageReference.getDownloadUrl().addOnCompleteListener(
+                                    new OnCompleteListener<Uri>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Uri> task) {
+                                            if (task.isSuccessful()) {
+                                                String downloadUrl = task.getResult().toString();
+                                                Glide.with(viewHolder.messageImageView.getContext()).load(downloadUrl).into(viewHolder.messageImageView);
+                                            } else {
+                                                Log.w(TAG, "Getting download url was not successful.", task.getException());
+                                            }
+                                        }
+                                    });
+                        } else {
+                            Glide.with(viewHolder.messageImageView.getContext()).load(friendlyMessage.getImageUrl()).into(viewHolder.messageImageView);
+                        }
+                        viewHolder.messageImageView.setVisibility(ImageView.VISIBLE);
+                        viewHolder.messageTextView.setVisibility(TextView.GONE);
+                    }
+
+                    viewHolder.messengerTextView.setText(friendlyMessage.getName());
+                    if (friendlyMessage.getPhotoUrl() == null) {
+                        viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(ChatActivity.this, R.drawable.ic_dashboard_black_24dp));
+                    } else {
+                        Glide.with(ChatActivity.this).load(friendlyMessage.getPhotoUrl()).into(viewHolder.messengerImageView);
+                    }
                 }
-            }
-        };
+            };
+        }
 
         mFirebaseAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -247,9 +298,6 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         });
     }
 
-
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -282,12 +330,22 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
         super.onDestroy();
     }
 
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        MenuItem admin = menu.findItem(R.id.action_admin);
+        admin.setVisible(true);
+        return true;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.top_menu, menu);
+
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -302,6 +360,10 @@ public class ChatActivity extends AppCompatActivity implements GoogleApiClient.O
                 return true;
             case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_admin:
+                Toast.makeText(this, "admin clicked", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

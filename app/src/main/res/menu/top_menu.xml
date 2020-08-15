@@ -14,6 +14,10 @@
         android:title="Donate" />-->
 
     <item
+        android:id="@+id/action_admin"
+        android:title="Admin"
+        android:visible="false" />
+    <item
         android:id="@+id/action_logout"
         android:title="Logout" />
 </menu>
